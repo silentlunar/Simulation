@@ -4,4 +4,9 @@ public class Predator extends Creature {
     public Predator(int speed, int healthPoints) {
         super(speed, healthPoints);
     }
+
+    @Override
+    public void makeMove() {
+
+    }
 }

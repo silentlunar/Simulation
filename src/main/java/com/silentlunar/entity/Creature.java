@@ -8,4 +8,5 @@ abstract public class Creature extends Entity {
         this.speed = speed;
         this.healthPoints = healthPoints;
     }
+    abstract public void makeMove();
 }
