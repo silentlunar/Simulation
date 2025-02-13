@@ -1,4 +1,4 @@
 package src.main.java.com.silentlunar.action;
 
-public class TurnAction extends Actions {
+public class TurnAction extends Action {
 }

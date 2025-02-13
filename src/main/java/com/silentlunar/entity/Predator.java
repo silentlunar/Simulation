@@ -6,6 +6,11 @@ public class Predator extends Creature {
     }
 
     @Override
+    public String toString() {
+        return "\uD83E\uDD88 ";
+    }
+
+    @Override
     public void makeMove() {
 
     }
