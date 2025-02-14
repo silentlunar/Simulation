@@ -8,8 +8,10 @@ import java.util.Random;
 
 public class InitAction extends Action {
 
-    Random randomX = new Random(map.width); //x
-    Random randomY = new Random(map.height); //y
+    private final static int STATIC_OBJECT_RATIO = 3;
+    private final static int CREATURE_RATIO = 4;
+
+    Random random = new Random();
 
     public InitAction(MapWorld map) {
         super(map);
@@ -18,57 +20,37 @@ public class InitAction extends Action {
 
     public void initMap() {
         int size = map.height * map.width;
-        int amountOfEntity = size / 3;
-        int amountOfCreature = amountOfEntity / 4;
-        int amountOfStaticObject = amountOfEntity - amountOfCreature;
-        initStaticObject(amountOfStaticObject);
-        initCreature(amountOfCreature);
+        int totalEntity = size / STATIC_OBJECT_RATIO;
+        int totalCreature = totalEntity / CREATURE_RATIO;
+        int totalStaticObjects = totalEntity - totalCreature;
+        initStaticObjects(totalStaticObjects);
+        initCreatures(totalCreature);
     }
 
-    public void initStaticObject(int amount) {
-        int amountOfGrass = amount / 3;
-        int amountOfBlock = amount - amountOfGrass;
-        for (int i = 0; i < amountOfBlock; i++) {
-            Coordinates coordinates = new Coordinates(randomY.nextInt(), randomX.nextInt());
-            if (map.isCellEmpty(coordinates)) {
-                if (coordinates.y() + coordinates.x() % 2 == 0) {
-                    map.addEntity(new Shell(), coordinates);
-                } else {
-                    map.addEntity(new Rock(), coordinates);
-                }
-            } else {
-                i--;
-            }
-        }
-        for (int i = 0; i < amountOfGrass; i++) {
-            Coordinates coordinates = new Coordinates(randomY.nextInt(), randomX.nextInt());
-            if (map.isCellEmpty(coordinates)) {
-                map.addEntity(new Grass(), coordinates);
-            } else {
-                i--;
-            }
-        }
+    public void initStaticObjects(int amount) {
+        int totalGrass = amount / STATIC_OBJECT_RATIO;
+        int totalBlock = amount - totalGrass;
+        addEntityToMap(new Grass(), totalGrass);
+        addEntityToMap(new Shell(), totalBlock / 2);
+        addEntityToMap(new Rock(), totalBlock / 2);
     }
 
-    public void initCreature(int amount) {
-        int amountOfPredator = amount / 3;
-        int amountOfHerbivore = amount - amountOfPredator;
-        for (int i = 0; i < amountOfHerbivore; i++) {
-            Coordinates coordinates = new Coordinates(randomY.nextInt(), randomX.nextInt());
+    public void initCreatures(int amount) {
+        int totalPredator = amount / 3;
+        int totalHerbivore = amount - totalPredator;
+        addEntityToMap(new Herbivore(), totalHerbivore);
+        addEntityToMap(new Predator(), totalPredator);
+    }
+
+    public void addEntityToMap(Entity entity, int amount) {
+        while (amount > 0) {
+            Coordinates coordinates = new Coordinates(random.nextInt(map.width), random.nextInt(map.height));
             if (map.isCellEmpty(coordinates)) {
-                map.addEntity(new Herbivore(1, 10), coordinates);
-            } else {
-                i--;
-            }
-        }
-        for (int i = 0; i < amountOfPredator; i++) {
-            Coordinates coordinates = new Coordinates(randomY.nextInt(), randomX.nextInt());
-            if (map.isCellEmpty(coordinates)) {
-                map.addEntity(new Predator(1, 10), coordinates);
-            } else {
-                i--;
+                map.addEntity(entity, coordinates);
+                amount--;
             }
         }
     }
 }
+
 
