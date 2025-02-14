@@ -26,4 +26,7 @@ public class MapWorld {
     public void removeEntity(Coordinates coordinates) {
         map.remove(coordinates);
     }
+    public boolean isCellEmpty(Coordinates coordinates) {
+        return !map.containsKey(coordinates);
+    }
 }
