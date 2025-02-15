@@ -1,8 +1,8 @@
-package src.main.java.com.silentlunar.action;
+package src.main.java.com.silentlunar.actions;
 
 import src.main.java.com.silentlunar.Coordinates;
 import src.main.java.com.silentlunar.MapWorld;
-import src.main.java.com.silentlunar.entity.*;
+import src.main.java.com.silentlunar.entities.*;
 
 import java.util.Random;
 

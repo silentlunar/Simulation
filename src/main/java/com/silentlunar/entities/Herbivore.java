@@ -1,11 +1,9 @@
-package src.main.java.com.silentlunar.entity;
-
-import java.util.Random;
+package src.main.java.com.silentlunar.entities;
 
 public class Herbivore extends Creature {
-    public Herbivore() {
-        super(1, 10);
-    }
+//    public Herbivore(int speed, int healthPoints) {
+//        super(speed, healthPoints);
+//    }
 
     @Override
     public String toString() {

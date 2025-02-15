@@ -1,4 +1,4 @@
-package src.main.java.com.silentlunar.entity;
+package src.main.java.com.silentlunar.entities;
 
 public class Rock extends Entity {
     @Override

@@ -1,6 +1,6 @@
 package src.main.java.com.silentlunar;
 
-import src.main.java.com.silentlunar.entity.Entity;
+import src.main.java.com.silentlunar.entities.Entity;
 
 public class Renderer {
     private static final String ANSI_RESET = "\u001B[0m";

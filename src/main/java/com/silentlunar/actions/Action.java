@@ -1,4 +1,4 @@
-package src.main.java.com.silentlunar.action;
+package src.main.java.com.silentlunar.actions;
 
 import src.main.java.com.silentlunar.MapWorld;
 
