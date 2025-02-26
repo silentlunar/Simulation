@@ -1,9 +1,16 @@
 package src.main.java.com.silentlunar.entities;
 
+import src.main.java.com.silentlunar.Coordinates;
+import src.main.java.com.silentlunar.MapWorld;
+import src.main.java.com.silentlunar.PathFinder;
+
+import java.util.List;
+
 public class Herbivore extends Creature {
-//    public Herbivore(int speed, int healthPoints) {
-//        super(speed, healthPoints);
-//    }
+
+
+    public Herbivore() {
+    }
 
     @Override
     public String toString() {
@@ -11,7 +18,13 @@ public class Herbivore extends Creature {
     }
 
     @Override
-    public void makeMove() {
-
+    public void makeMove(MapWorld map, Coordinates coordinates) {
+        PathFinder pathFinder = new PathFinder(map);
+        List<Coordinates> path = pathFinder.bfs(coordinates, new Herbivore());
+        if (path.size() > 2) {
+            moveToObject(map, path);
+        } else {
+            eatTarget(map, path);
+        }
     }
 }
