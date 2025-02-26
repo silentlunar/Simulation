@@ -22,10 +22,12 @@ public class Predator extends Creature {
     public void makeMove(MapWorld map, Coordinates coordinates) {
         PathFinder pathFinder = new PathFinder(map);
         List<Coordinates> path = pathFinder.bfs(coordinates, new Predator());
-        if (path.size() > 1) {
+        if (path.size() > 2) {
             moveToObject(map, path);
-        } else {
+        } else if (path.size() == 2) {
             eatTarget(map, path);
+        } else {
+            System.out.println("Закончились травоядные у хищника - " + path.getFirst());
         }
     }
 }

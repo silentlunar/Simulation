@@ -23,8 +23,10 @@ public class Herbivore extends Creature {
         List<Coordinates> path = pathFinder.bfs(coordinates, new Herbivore());
         if (path.size() > 2) {
             moveToObject(map, path);
-        } else {
+        } else if (path.size() == 2) {
             eatTarget(map, path);
+        } else {
+            System.out.println("Закончилась трава у травоядного - " + path.getFirst());
         }
     }
 }
