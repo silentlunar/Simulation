@@ -17,7 +17,7 @@ public class PathFinder {
 
     public List<Coordinates> bfs(Coordinates start, Creature creature) {
         List<Coordinates> path = new ArrayList<>();
-        visited[start.x()][start.y()] = true;
+        visited[start.y()][start.x()] = true;
         findNeighbors(start);
         path.add(start);
 
@@ -50,9 +50,12 @@ public class PathFinder {
         for (int i = y - 1; i <= y + 1; i++) {
             for (int j = x - 1; j <= x + 1; j++) {
                 if (i >= 0 && j >= 0 && i < map.height && j < map.width) {
+
                     Coordinates neighbour = new Coordinates(i, j);
                     if (!visited[i][j]) {
-                        neighboursList.add(neighbour);
+                        if (map.isCellEmpty(neighbour) || !(map.getEntity(neighbour) instanceof Block)) {
+                            neighboursList.add(neighbour);
+                        }
                         visited[i][j] = true;
                     }
                 }
