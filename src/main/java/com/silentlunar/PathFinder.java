@@ -33,7 +33,6 @@ public class PathFinder {
                 if (creature instanceof Herbivore) {
                     if (entity instanceof Grass) {
                         return findPathToObject(start, coordinates, path);
-
                     }
                 }
             }
@@ -47,6 +46,7 @@ public class PathFinder {
     public void findNeighbors(Coordinates current) {
         int x = current.x();
         int y = current.y();
+
         for (int i = y - 1; i <= y + 1; i++) {
             for (int j = x - 1; j <= x + 1; j++) {
                 if (i >= 0 && j >= 0 && i < map.height && j < map.width) {
@@ -63,6 +63,7 @@ public class PathFinder {
     public List<Coordinates> findPathToObject(Coordinates start, Coordinates target, List<Coordinates> path) {
         int x = start.x();
         int y = start.y();
+
         while (x != target.x() && y != target.y()) {
             if (x < target.x()) x++;
             if (x > target.x()) x--;

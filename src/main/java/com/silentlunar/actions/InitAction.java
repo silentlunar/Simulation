@@ -46,7 +46,13 @@ public class InitAction extends Action {
         while (amount > 0) {
             Coordinates coordinates = new Coordinates(random.nextInt(map.width), random.nextInt(map.height));
             if (map.isCellEmpty(coordinates)) {
-                map.addEntity(entity, coordinates);
+                if (entity instanceof Predator) {
+                    map.addEntity(new Predator(), coordinates);
+                } else if (entity instanceof Herbivore) {
+                    map.addEntity(new Herbivore(), coordinates);
+                } else {
+                    map.addEntity(entity, coordinates);
+                }
                 amount--;
             }
         }
