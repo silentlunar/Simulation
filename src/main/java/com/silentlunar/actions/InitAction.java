@@ -31,8 +31,10 @@ public class InitAction extends Action {
         int totalGrass = amount / STATIC_OBJECT_RATIO;
         int totalBlock = amount - totalGrass;
         addEntityToMap(new Grass(), totalGrass);
-        addEntityToMap(new Shell(), totalBlock / 2);
-        addEntityToMap(new Rock(), totalBlock / 2);
+        addEntityToMap(new Shell(), totalBlock / 3);
+        addEntityToMap(new Rock(), totalBlock / 3);
+        addEntityToMap(new Coral(), totalBlock / 3);
+
     }
 
     public void initCreatures(int amount) {
